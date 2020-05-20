@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace QuickBuy.Dominio.Entities
 {
-    public class User
+    public class User : Entity
     {
         public int Id { get; set; }
 
@@ -17,5 +17,10 @@ namespace QuickBuy.Dominio.Entities
 
         // usuário pode ter N pedidos
         public ICollection<Order> Orders { get; set; }
+
+        public override void Validate()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

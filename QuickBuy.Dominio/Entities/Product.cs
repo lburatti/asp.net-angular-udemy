@@ -1,6 +1,6 @@
 namespace QuickBuy.Dominio.Entities
 {
-    public class Product
+    public class Product : Entity
     {
         public int Id { get; set; }
 
@@ -9,5 +9,10 @@ namespace QuickBuy.Dominio.Entities
         public string Description { get; set; }
 
         public decimal Price { get; set; }
+
+        public override void Validate()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -2,10 +2,11 @@ using QuickBuy.Dominio.ValueObject;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace QuickBuy.Dominio.Entities
 {
-    public class Order
+    public class Order : Entity
     {
         public int Id { get; set; }
 
@@ -33,5 +34,16 @@ namespace QuickBuy.Dominio.Entities
 
         // pedido pode ter N itens
         public ICollection<OrderItem> OrderItens { get; set; }
+
+        public override void Validate()
+        {
+            ClearValidationMessage();
+
+            if (!OrderItens.Any())
+                AddValidationMessage("Pedido deve ter itens para existir");
+
+            if (string.IsNullOrEmpty(CEP))
+                AddValidationMessage("CEP deve ser preenchido");
+        }
     }
 }
